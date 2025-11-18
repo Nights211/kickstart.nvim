@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -166,6 +166,9 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Better performance during macros
+vim.o.lazyredraw = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -199,6 +202,21 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Quick save
+vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save file' })
+
+-- Quick quit
+vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit window' })
+
+-- File explorer (netrw)
+vim.keymap.set('n', '<leader>e', '<cmd>Ex<CR>', { desc = 'Open file explorer' })
+
+-- Quick escape from insert mode
+vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
+
+-- Close buffer without closing window
+vim.keymap.set('n', '<leader>x', '<cmd>bp|bd #<CR>', { desc = 'Close buffer' })
+
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
@@ -216,6 +234,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
     vim.hl.on_yank()
+  end,
+})
+
+-- Better markdown editing
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Markdown-specific settings for better readability',
+  pattern = 'markdown',
+  group = vim.api.nvim_create_augroup('markdown-settings', { clear = true }),
+  callback = function()
+    vim.opt_local.linebreak = true -- Break lines at word boundaries
+    vim.opt_local.breakindent = true -- Indent wrapped lines
+    vim.opt_local.spell = true -- Enable spell checking
   end,
 })
 
@@ -886,15 +916,27 @@ require('lazy').setup({
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
+        style = 'storm',
         styles = {
-          comments = { italic = false }, -- Disable italics in comments
+          comments = { italic = false },
         },
+        on_colors = function(colors)
+          colors.bg = '#0a0e14'
+          colors.bg_dark = '#06080c'
+          colors.bg_highlight = '#1a1f29'
+          colors.comment = '#565f89'
+        end,
+        on_highlights = function(hl, colors)
+          hl['@markup.heading.1.markdown'] = { fg = colors.blue, bold = true }
+          hl['@markup.heading.2.markdown'] = { fg = colors.cyan, bold = true }
+          hl['@markup.heading.3.markdown'] = { fg = colors.green, bold = true }
+          hl['@markup.heading.4.markdown'] = { fg = colors.magenta, bold = true }
+          hl['@markup.heading.5.markdown'] = { fg = colors.yellow, bold = true }
+          hl['@markup.heading.6.markdown'] = { fg = colors.orange, bold = true }
+        end,
       }
 
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'tokyonight-storm'
     end,
   },
 

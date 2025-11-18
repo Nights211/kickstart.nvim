@@ -1,5 +1,35 @@
 # kickstart.nvim
 
+## Custom Configuration
+
+This setup includes the following customizations:
+
+### Color Scheme
+- **Theme**: Tokyo Night Storm with custom colors
+- **Background**: Dark gray (#0a0e14) - distinct from terminal's true black
+- **Comments**: Blue-gray (#565f89) for consistency
+- **Markdown Headings**: Color-coded hierarchy (H1-H6: blue, cyan, green, magenta, yellow, orange)
+
+### Editor Settings
+- **Line Numbers**: Relative numbering enabled
+- **Line Wrapping**: Enabled globally, with smart word-boundary wrapping for markdown
+- **Whitespace**: Visible tabs (») and trailing spaces (·)
+- **Performance**: Lazy redraw enabled for faster macros
+- **Markdown**: Auto-enabled spell check and smart line breaking for .md files
+
+### Key Bindings
+- `<Space>w` - Quick save
+- `<Space>q` - Quit window
+- `<Space>e` - Open file explorer (`:Ex`)
+- `jk` - Exit insert mode (alternative to Esc)
+- `<Space>x` - Close buffer without closing window
+- `<C-h/j/k/l>` - Navigate between windows (already in kickstart)
+
+### Alignment with WezTerm
+Nvim uses Tokyo Night Storm to complement WezTerm's terminal theme while maintaining visual distinction through different background colors.
+
+---
+
 ## Introduction
 
 A starting point for Neovim that is:
