@@ -2,28 +2,48 @@
 
 ## Custom Configuration
 
-This setup includes the following customizations:
+This setup includes the following customizations beyond the base kickstart.nvim:
 
 ### Color Scheme
 - **Theme**: Tokyo Night Storm with custom colors
 - **Background**: Dark gray (#0a0e14) - distinct from terminal's true black
-- **Comments**: Blue-gray (#565f89) for consistency
-- **Markdown Headings**: Color-coded hierarchy (H1-H6: blue, cyan, green, magenta, yellow, orange)
+- **Background Dark**: Darker shade (#06080c) for contrast
+- **Background Highlight**: Lighter shade (#1a1f29) for selections
+- **Comments**: Blue-gray (#565f89) for consistency, non-italic
+- **Markdown Headings**: Color-coded hierarchy
+  - H1: Blue (bold)
+  - H2: Cyan (bold)
+  - H3: Green (bold)
+  - H4: Magenta (bold)
+  - H5: Yellow (bold)
+  - H6: Orange (bold)
 
 ### Editor Settings
-- **Line Numbers**: Relative numbering enabled
-- **Line Wrapping**: Enabled globally, with smart word-boundary wrapping for markdown
+- **Line Numbers**: Relative numbering enabled (`relativenumber`)
 - **Whitespace**: Visible tabs (») and trailing spaces (·)
 - **Performance**: Lazy redraw enabled for faster macros
-- **Markdown**: Auto-enabled spell check and smart line breaking for .md files
+- **Confirmation**: Prompts to save instead of failing on unsaved changes (`confirm`)
+- **Markdown-specific**:
+  - Auto-enabled spell check
+  - Smart line breaking at word boundaries (`linebreak`)
+  - Indent wrapped lines (`breakindent`)
 
 ### Key Bindings
-- `<Space>w` - Quick save
-- `<Space>q` - Quit window
+Custom keymaps added to kickstart defaults:
+- `<Space>w` - Quick save (`:w`)
+- `<Space>q` - Quit window (`:q`)
 - `<Space>e` - Open file explorer (`:Ex`)
 - `jk` - Exit insert mode (alternative to Esc)
-- `<Space>x` - Close buffer without closing window
-- `<C-h/j/k/l>` - Navigate between windows (already in kickstart)
+- `<Space>x` - Close buffer without closing window (`:bp|bd #`)
+
+Note: Kickstart includes `<C-h/j/k/l>` for window navigation by default.
+
+### LSP & Diagnostics
+- **Severity sorting**: Errors prioritized in diagnostic lists
+- **Rounded borders**: Floating windows use rounded borders
+- **Error-only underlines**: Only errors are underlined (not warnings/info)
+- **Virtual text**: Diagnostic messages shown inline with proper spacing
+- **Nerd Font icons**: Custom diagnostic signs (if Nerd Font enabled)
 
 ### Alignment with WezTerm
 Nvim uses Tokyo Night Storm to complement WezTerm's terminal theme while maintaining visual distinction through different background colors.
