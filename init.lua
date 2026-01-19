@@ -728,6 +728,16 @@ require('lazy').setup({
             },
           },
         },
+        zls = {
+          -- Zig Language Server
+          settings = {
+            zls = {
+              enable_inlay_hints = true,
+              enable_snippets = true,
+              warn_style = true,
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -746,6 +756,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'zls',    -- Zig Language Server
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -1056,3 +1067,6 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Setup Zig configuration
+require('zig-config').setup()
