@@ -928,8 +928,11 @@ require('lazy').setup({
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
         style = 'storm',
+        transparent = true,
         styles = {
           comments = { italic = false },
+          sidebars = 'dark',
+          floats = 'dark',
         },
         on_colors = function(colors)
           colors.bg = '#0a0e14'
