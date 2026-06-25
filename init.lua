@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -206,7 +206,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save file' })
 
 -- Quick quit
-vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit window' })
+vim.keymap.set('n', '<leader>qq', '<cmd>q<CR>', { desc = 'Quit window' })
 
 -- File explorer (netrw)
 vim.keymap.set('n', '<leader>e', '<cmd>Ex<CR>', { desc = 'Open file explorer' })
