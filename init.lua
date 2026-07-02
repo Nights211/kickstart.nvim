@@ -207,6 +207,8 @@ vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save file' })
 
 -- Quick quit
 vim.keymap.set('n', '<leader>qq', '<cmd>q<CR>', { desc = 'Quit window' })
+-- Even faster: Shift+Q quits the window (blocks if there are unsaved changes)
+vim.keymap.set('n', 'Q', '<cmd>q<CR>', { desc = 'Quit window' })
 
 -- File explorer (netrw)
 vim.keymap.set('n', '<leader>e', '<cmd>Ex<CR>', { desc = 'Open file explorer' })
@@ -1040,7 +1042,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
