@@ -28,4 +28,19 @@ return {
     ft = { 'markdown' },
     opts = {},
   },
+
+  -- Neovide-style cursor trail in the terminal. Disabled in Neovide itself,
+  -- which animates the cursor (and scrolling, see neoscroll below) natively.
+  {
+    'sphamba/smear-cursor.nvim',
+    cond = not vim.g.neovide,
+    opts = {},
+  },
+
+  -- Smooth scrolling for <C-d>/<C-u>/<C-f>/<C-b>/zz etc. in the terminal.
+  {
+    'karb94/neoscroll.nvim',
+    cond = not vim.g.neovide,
+    opts = {},
+  },
 }
