@@ -1075,3 +1075,14 @@ require('lazy').setup({
 
 -- Setup Zig configuration
 require('zig-config').setup()
+
+-- Neovide GUI settings — only apply when running inside Neovide (terminal nvim ignores this).
+-- Smooth scrolling and cursor glide are Neovide defaults; knobs below to taste.
+-- All knobs: https://neovide.dev/configuration.html
+if vim.g.neovide then
+  vim.o.guifont = 'FiraCode Nerd Font:h12' -- match wezterm (awal-tools config/wezterm/.wezterm.lua)
+  -- vim.g.neovide_cursor_vfx_mode = 'railgun' -- cursor particle trails: railgun|torpedo|pixiedust|sonicboom|ripple|wireframe
+  -- vim.g.neovide_scroll_animation_length = 0.3 -- seconds; 0 disables smooth scroll
+  -- vim.g.neovide_cursor_animation_length = 0.15 -- seconds; 0 disables cursor glide
+  -- vim.g.neovide_opacity = 0.95 -- window transparency
+end
