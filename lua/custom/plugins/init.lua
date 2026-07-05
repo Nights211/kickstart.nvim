@@ -43,4 +43,27 @@ return {
     cond = not vim.g.neovide,
     opts = {},
   },
+
+  -- Chrome-style visual tab bar. mode = 'tabs' mirrors the <C-t> tab workflow
+  -- (one entry per tab page) instead of listing every open buffer.
+  {
+    'akinsho/bufferline.nvim',
+    version = '*',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      options = {
+        mode = 'tabs',
+        show_close_icon = false,
+      },
+    },
+  },
+
+  -- Dashboard splash screen when opening nvim/Neovide with no file.
+  {
+    'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('alpha').setup(require('alpha.themes.dashboard').config)
+    end,
+  },
 }
