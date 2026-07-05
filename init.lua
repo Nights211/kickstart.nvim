@@ -210,6 +210,9 @@ vim.keymap.set('n', '<leader>qq', '<cmd>q<CR>', { desc = 'Quit window' })
 -- Even faster: Shift+Q quits the window (blocks if there are unsaved changes)
 vim.keymap.set('n', 'Q', '<cmd>q<CR>', { desc = 'Quit window' })
 
+-- New tab, Chrome/wezterm-style (overrides tag-stack pop; use <C-o> to jump back instead)
+vim.keymap.set('n', '<C-t>', '<cmd>tabnew<CR>', { desc = 'New tab' })
+
 -- File explorer (netrw)
 vim.keymap.set('n', '<leader>e', '<cmd>Ex<CR>', { desc = 'Open file explorer' })
 
