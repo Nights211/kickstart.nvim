@@ -1,73 +1,13 @@
--- Custom plugins
+-- You can add your own plugins here or in other files in this directory!
+--  I promise not to create any merge conflicts in this directory :)
+--
+-- See the kickstart.nvim README for more information
 
-return {
-  -- Lean 4 theorem prover support
-  -- Handles LSP, infoview, and Lean-specific features
-  {
-    'Julian/lean.nvim',
-    event = { 'BufReadPre *.lean', 'BufNewFile *.lean' },
-    dependencies = {
-      'neovim/nvim-lspconfig',
-      'nvim-lua/plenary.nvim',
-    },
-    opts = {
-      lsp = {},
-      mappings = true,
-    },
-  },
-
-  -- Pretty in-editor Markdown: aligned tables, styled headings, code blocks,
-  -- checkboxes, callouts. Renders in normal mode, reveals raw text in insert
-  -- mode so editing is unaffected.
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-tree/nvim-web-devicons',
-    },
-    ft = { 'markdown' },
-    opts = {
-      -- Icons on headings but no full-width background bars (too noisy)
-      heading = { backgrounds = {} },
-    },
-  },
-
-  -- Neovide-style cursor trail in the terminal. Disabled in Neovide itself,
-  -- which animates the cursor (and scrolling, see neoscroll below) natively.
-  {
-    'sphamba/smear-cursor.nvim',
-    cond = not vim.g.neovide,
-    opts = {},
-  },
-
-  -- Smooth scrolling for <C-d>/<C-u>/<C-f>/<C-b>/zz etc. in the terminal.
-  {
-    'karb94/neoscroll.nvim',
-    cond = not vim.g.neovide,
-    opts = {},
-  },
-
-  -- Chrome-style visual tab bar. mode = 'tabs' mirrors the <C-t> tab workflow
-  -- (one entry per tab page) instead of listing every open buffer.
-  {
-    'akinsho/bufferline.nvim',
-    version = '*',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
-      options = {
-        mode = 'tabs',
-        numbers = 'ordinal', -- label tabs 1. 2. 3. to match the <C-1>..<C-9> jumps
-        show_close_icon = false,
-      },
-    },
-  },
-
-  -- Dashboard splash screen when opening nvim/Neovide with no file.
-  {
-    'goolord/alpha-nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require('alpha').setup(require('alpha.themes.dashboard').config)
-    end,
-  },
-}
+-- Iterate over all Lua files in the plugins directory and load them
+local plugins_dir = vim.fs.joinpath(vim.fn.stdpath 'config', 'lua', 'custom', 'plugins')
+for file_name, type in vim.fs.dir(plugins_dir, { follow = true }) do
+  if (type == 'file' or type == 'link') and file_name:match '%.lua$' and file_name ~= 'init.lua' then
+    local module = file_name:gsub('%.lua$', '')
+    require('custom.plugins.' .. module)
+  end
+end

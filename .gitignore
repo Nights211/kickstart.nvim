@@ -4,3 +4,9 @@ test.sh
 nvim
 
 spell/
+
+# Personal fork: we track nvim-pack-lock.json (recommended, see :help vim.pack-lockfile).
+# Upstream kickstart ignores it to avoid merge conflicts — re-ignore if that ever bites.
+# nvim-pack-lock.json
+
+.DS_Store
