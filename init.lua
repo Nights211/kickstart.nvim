@@ -112,8 +112,9 @@ do
   --  Experiment for yourself to see if you like it!
   vim.o.relativenumber = true
 
-  -- Better performance during macros
-  vim.o.lazyredraw = true
+  -- NOTE: lazyredraw was set here for macro performance, but noice.nvim is
+  -- incompatible with it (rendering glitches) — removed 2026-07-05. Restore it
+  -- only if noice goes.
 
   -- Enable mouse mode, can be useful for resizing splits for example!
   vim.o.mouse = 'a'
