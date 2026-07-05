@@ -213,6 +213,12 @@ vim.keymap.set('n', 'Q', '<cmd>q<CR>', { desc = 'Quit window' })
 -- New tab, Chrome/wezterm-style (overrides tag-stack pop; use <C-o> to jump back instead)
 vim.keymap.set('n', '<C-t>', '<cmd>tabnew<CR>', { desc = 'New tab' })
 
+-- Ctrl+1..9 jump to tab N, Chrome-style (Ctrl+9 = last tab, like Chrome)
+for i = 1, 8 do
+  vim.keymap.set('n', '<C-' .. i .. '>', i .. 'gt', { desc = 'Go to tab ' .. i })
+end
+vim.keymap.set('n', '<C-9>', '<cmd>tablast<CR>', { desc = 'Go to last tab' })
+
 -- File explorer (netrw)
 vim.keymap.set('n', '<leader>e', '<cmd>Ex<CR>', { desc = 'Open file explorer' })
 
@@ -1084,7 +1090,9 @@ require('zig-config').setup()
 -- All knobs: https://neovide.dev/configuration.html
 if vim.g.neovide then
   vim.o.guifont = 'FiraCode Nerd Font:h12' -- match wezterm (awal-tools config/wezterm/.wezterm.lua)
-  vim.g.neovide_cursor_vfx_mode = 'railgun' -- cursor particle trails: railgun|torpedo|pixiedust|sonicboom|ripple|wireframe
+  -- Cursor particle trails: railgun|torpedo|pixiedust|sonicboom|ripple|wireframe.
+  -- Tried railgun 2026-07-05: fires on every typed letter in insert mode — too noisy.
+  -- vim.g.neovide_cursor_vfx_mode = 'railgun'
   -- vim.g.neovide_scroll_animation_length = 0.3 -- seconds; 0 disables smooth scroll
   -- vim.g.neovide_cursor_animation_length = 0.15 -- seconds; 0 disables cursor glide
   -- vim.g.neovide_opacity = 0.95 -- window transparency

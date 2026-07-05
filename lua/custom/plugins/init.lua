@@ -53,6 +53,7 @@ return {
     opts = {
       options = {
         mode = 'tabs',
+        numbers = 'ordinal', -- label tabs 1. 2. 3. to match the <C-1>..<C-9> jumps
         show_close_icon = false,
       },
     },
