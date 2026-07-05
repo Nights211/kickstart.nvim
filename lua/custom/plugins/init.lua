@@ -26,7 +26,10 @@ return {
       'nvim-tree/nvim-web-devicons',
     },
     ft = { 'markdown' },
-    opts = {},
+    opts = {
+      -- Icons on headings but no full-width background bars (too noisy)
+      heading = { backgrounds = {} },
+    },
   },
 
   -- Neovide-style cursor trail in the terminal. Disabled in Neovide itself,
